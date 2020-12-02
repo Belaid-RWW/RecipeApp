@@ -1,0 +1,33 @@
+<ion-header>
+  <ion-toolbar color="primary">
+    <ion-title>Login</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <form [formGroup] ="authentificationForm" (ngSubmit)="submit()">
+  <ion-item style="margin-top: 10%;">
+    <ion-label position="floating">Email</ion-label>
+    <ion-input type="text" formControlName="email"></ion-input>
+  </ion-item>
+  <div *ngFor="let error of errorMessages.email">
+    <ng-container *ngIf="!authentificationForm.controls.email.valid &&
+    (authentificationForm.controls.email.dirty||authentificationForm.controls.email.touched)">
+      <small class="error-message">{{error.message}}</small>
+    </ng-container>
+  </div>
+  <ion-item style="margin-top: 5%;">
+    <ion-label position="floating">Password</ion-label>
+    <ion-input type="password" formControlName="password"></ion-input>
+  </ion-item>
+  <div *ngFor="let error of errorMessages.password">
+    <ng-container *ngIf="!authentificationForm.controls.password.valid &&
+    (authentificationForm.controls.password.dirty || authentificationForm.controls.password.touched)">
+      <small class="error-message">{{error.message}}</small>
+    </ng-container>
+
+  </div>
+    <ion-button type="reset" style="margin-top: 10%;margin-left: 19%;width: 28%;" color="medium">Reset</ion-button>
+    <ion-button style="margin-top: 10%;" [disabled]="!authentificationForm.valid" color="success" type="submit">Connect</ion-button>
+  </form>
+</ion-content>
