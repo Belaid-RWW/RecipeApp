@@ -1,5 +1,6 @@
 import { Component, OnInit } from "@angular/core";
-import { FormBuilder, Validators } from "@angular/forms";
+import { FormBuilder, FormGroup, Validators } from "@angular/forms";
+
 
 @Component({
   selector: "app-login",
@@ -7,26 +8,29 @@ import { FormBuilder, Validators } from "@angular/forms";
   styleUrls: ["./login.page.scss"],
 })
 export class LoginPage implements OnInit {
-  authentificationForm = this.formBuilder.group({
-    email: [
-      "",
-      [
-        Validators.pattern("^[a-z0-9._%+-]+@[a-z0-9.-]+\\.[a-z]{2,4}$"),
-      ],
-    ],
-    password: [
-      "",
-      [
-        Validators.pattern(
-          "(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[$@$!%*?&])[A-Za-zd$@$!%*?&].{8,}"
-        ),
-      ],
-    ],
-  });
 
+  emailRequiredField :string = "Email is required";
+  emailInvalid :string = "Email is invalid";
+  passwordRequiredField :string = "Password is required";
+  passwordInvalid :string = "Password is invalid";
+
+  authentificationForm : FormGroup ;
   constructor(private formBuilder: FormBuilder) {}
 
-  ngOnInit() {}
+  ngOnInit() {
+    this.authentificationForm = this.formBuilder.group({
+      email: ["", [Validators.required, Validators.email]],
+      password: [
+        "",
+        [
+          Validators.required,
+          Validators.pattern(
+            "(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[$@$!%*?&])[A-Za-zd$@$!%*?&].{8,}"
+          ),
+        ],
+      ],
+    });
+  }
 
   public submit() {
     //Validation des données
@@ -41,15 +45,4 @@ export class LoginPage implements OnInit {
   getPassword() {
     this.authentificationForm.get("password");
   }
-  // Error Messages
-  public errorMessages = {
-    email: [
-      // { type: "required", message: "This field is required" },
-      { type: "pattern", message: "This is not a valid email address" },
-    ],
-    password: [
-      // { type: "required", message: "This field is required" },
-      { type: "pattern", message: "This is not a valid password" },
-    ],
-  };
 }
