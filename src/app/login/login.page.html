@@ -1,0 +1,34 @@
+<ion-header>
+  <ion-toolbar color="primary">
+    <ion-title>Login</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <form [formGroup] ="authentificationForm">
+    <ion-item lines="full">
+      <ion-label position="floating">Email</ion-label>
+      <ion-input type="email" placeholder="Email" formControlName="email" required></ion-input>
+      <div *ngIf="(authentificationForm.controls.email.touched) && authentificationForm.controls.email.errors" class="errors"></div>
+      <span *ngIf="(authentificationForm.controls.email.errors?.email)">{{emailInvalid}}</span>
+          </ion-item>
+
+    <ion-item lines="full">
+      <ion-label position="floating">Password</ion-label>
+      <ion-input type="password" placeholder="Password" formControlName="password" required></ion-input>
+      <div *ngIf="(authentificationForm.controls.password.touched) && authentificationForm.controls.password.errors" class="errors"></div>
+      <span *ngIf="authentificationForm.controls.password.errors?.pattern">{{passwordInvalid}}</span>
+    </ion-item>
+
+    <ion-row>
+      <ion-col>
+        <ion-button type="submit" color="danger" expand="block" [disabled]="!authentificationForm.valid">Sign In</ion-button>
+      </ion-col>
+    </ion-row>
+  </form>
+</ion-content>
+<ion-footer>
+  <ion-text color="dark">
+    <p style="text-align: center;">All Rights Reserved © 2020</p>
+  </ion-text>
+</ion-footer>
