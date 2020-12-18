@@ -11,8 +11,8 @@ export class LoginPage implements OnInit {
   emailRequired: string = "Please enter your e-mail!";
   passwordRequired: string = "Please enter your password!";
 
-  emailInvalid: string = "Email not valid!";
-  passwordInvalid: string = "Password not valid!";
+  emailInvalid: string = "Email is invalid";
+  passwordInvalid: string = "Password is invalid";
 
   authentificationForm: FormGroup;
 
@@ -23,10 +23,5 @@ export class LoginPage implements OnInit {
                                                         ],],});
   }
 
-  public getEmail(){
-    this.authentificationForm.get("email");
-  }
-  public getPassword(){
-    this.authentificationForm.get("password");
-  }
+
 }
