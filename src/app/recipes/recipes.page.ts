@@ -8,11 +8,16 @@ import { RecipesService } from './recipes.service';
   styleUrls: ['./recipes.page.scss'],
 })
 export class RecipesPage implements OnInit {
-  recipes: Recipe[];
-  constructor(private recipeService: RecipesService) { }
+recipes:Recipe[] ;
+  constructor(private recipesService:RecipesService) { }
+ 
 
+
+//elle va s executer a la creation de la page html
   ngOnInit() {
-    this.recipes = this.recipeService.getAllRecipes();
+    this.recipes=this.recipesService.getAllRecipes();
   }
+ 
 
 }
+
