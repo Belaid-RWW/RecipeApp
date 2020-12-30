@@ -1,9 +1,47 @@
 <ion-header>
-  <ion-toolbar>
-    <ion-title>add-recipe</ion-title>
+  <ion-toolbar color="primary">
+    <ion-title style="
+    margin-left: 29%;color: aqua;
+">addRecipe</ion-title>
   </ion-toolbar>
 </ion-header>
 
-<ion-content>
+<ion-content >
+  <form style="        margin-top: 15%;
+  border: 4px solid #f8f5f5;
+  border-radius: 11% 11% 11% 11%;
+  box-shadow: 9px 11px 24px 8px #e5e5e5;
+  height: 57%;">
+    <ion-item>
+      <ion-label>Title</ion-label>
+      <ion-input type="text"  name="title"></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-label>Ingredients</ion-label>
+      <ion-textarea name="description"></ion-textarea>
+    </ion-item>
+    
+      <ion-button size="small" (click)="getPicture('camera')">
+        <ion-icon name="camera" slot="start"></ion-icon>
+        <ion-label>Camera</ion-label>
+      </ion-button>
+      <ion-button size="small" (click)="getPicture('gallery')">
+        <ion-icon name="image" slot="start"></ion-icon>
+        <ion-label>Gallery</ion-label>
+      </ion-button>
+      <input type="file" *ngIf="isDesktop" #filePicker (change)="onFileChoose($event)"/>
+     
+    
+      <ion-card *ngIf="photo">
+        <ion-card-content>
+          <img [src]="photo">
+        </ion-card-content>
+      </ion-card>
+     
+ 
+    
+
+   
+  </form>
 
 </ion-content>
